@@ -3,6 +3,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'tmp/**/*'
+    - 'vendor/bundle/**/*'
 
 Layout/EndOfLine:
   EnforcedStyle: lf

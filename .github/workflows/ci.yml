@@ -2,6 +2,9 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
+      - develop
   pull_request:
 
 permissions:
@@ -15,9 +18,37 @@ jobs:
         with:
           persist-credentials: false
       - uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f
+        if: ${{ !env.ACT }}
         with:
           ruby-version: '3.4'
           bundler-cache: true
+      - name: Build Ruby for the local runner
+        if: ${{ env.ACT }}
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libffi-dev libgmp-dev libssl-dev libyaml-dev zlib1g-dev
+
+          build_dir="$(mktemp -d)"
+          trap 'rm -rf "$build_dir"' EXIT
+          cd "$build_dir"
+          curl --fail --silent --show-error --location --retry 3 \
+            https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.12.tar.gz -o ruby.tar.gz
+          echo '5e5d85ad93b0adcccbad47733680f4892bd0078e3342437f7babce01c1872479  ruby.tar.gz' | sha256sum --check
+          tar -xzf ruby.tar.gz
+          cd ruby-3.4.12
+          ruby_prefix="$HOME/.local/ruby-3.4.12"
+          ./configure --prefix="$ruby_prefix" --disable-install-doc
+          make -j"$(nproc)"
+          make install
+
+          export PATH="$ruby_prefix/bin:$PATH"
+          echo "$ruby_prefix/bin" >> "$GITHUB_PATH"
+          ruby --version
+          bundler_version="$(awk '/^BUNDLED WITH$/{getline; print $1}' "$GITHUB_WORKSPACE/Gemfile.lock")"
+          gem install bundler --version "$bundler_version" --no-document
+          cd "$GITHUB_WORKSPACE"
+          bundle install
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: '24'
