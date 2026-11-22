@@ -1,5 +1,6 @@
 # Sinatra + Vite Template
 
+[![CI](https://github.com/rpdigitalmain/sinatra-vite-template/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rpdigitalmain/sinatra-vite-template/actions/workflows/ci.yml?query=branch%3Amain)
 ![Ruby 3.4 or 4.0](https://img.shields.io/badge/Ruby-3.4%20%7C%204.0-CC342D?logo=ruby&logoColor=white)
 ![Sinatra 4.2](https://img.shields.io/badge/Sinatra-4.2-222222)
 ![Node.js 24+](https://img.shields.io/badge/Node.js-24%2B-339933?logo=nodedotjs&logoColor=white)
