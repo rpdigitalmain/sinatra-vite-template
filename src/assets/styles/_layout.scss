@@ -1,0 +1,7 @@
+@use 'tokens';
+
+main {
+  max-width: tokens.$content-max-width;
+  margin: 12vh auto;
+  padding: 0 tokens.$content-gutter;
+}

@@ -1,0 +1,5 @@
+@use 'tokens';
+
+body {
+  font: 1rem/1.5 tokens.$body-font;
+}

@@ -1,0 +1,10 @@
+.git
+.github
+.bundle
+.env
+.env.*
+node_modules
+dist
+vendor/bundle
+playwright-report
+test-results

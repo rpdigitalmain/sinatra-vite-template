@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "Shopify.ruby-lsp",
+    "dbaeumer.vscode-eslint"
+  ]
+}

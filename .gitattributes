@@ -1,0 +1,6 @@
+*.rb text eol=lf
+*.ru text eol=lf
+Gemfile text eol=lf
+Rakefile text eol=lf
+/src/** text eol=lf
+/dist/** text eol=lf

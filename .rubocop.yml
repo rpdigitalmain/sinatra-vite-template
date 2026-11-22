@@ -1,0 +1,21 @@
+AllCops:
+  TargetRubyVersion: 3.4
+  NewCops: enable
+  Exclude:
+    - 'tmp/**/*'
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'spec/support/**/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/support/**/*'

@@ -1,0 +1,6 @@
+@use 'tokens';
+
+body {
+  color: tokens.$text-color;
+  background: tokens.$page-background;
+}
